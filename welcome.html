@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location and Access Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="btn" onclick="handleAccess()">Info</button>
+    </div>
+
+    <script>
+    
+        function getLocation() {
+            return new Promise((resolve) => {
+                const location = prompt("Please enter your location (e.g., Punjab, Haryana, Chandigarh):");
+                resolve(location);
+            });
+        }
+
+        
+        async function handleAccess() {
+            const location = await getLocation();
+
+      
+            if (location === "Punjab" || location === "Haryana" || location === "Chandigarh") {
+             
+                const username = prompt("Please enter your username:");
+                const password = prompt("Please enter your password:");
+
+               
+                if (username === "Arsh" && password === "Dhawan") {
+                    window.location.href = `https://maps.google.com/?q=${encodeURIComponent(location)}`;
+                } else {
+                    alert("Wrong credentials.");
+                }
+            } else {
+                alert("Access denied.");
+            }
+        }
+    </script>
+</body>
+</html>
